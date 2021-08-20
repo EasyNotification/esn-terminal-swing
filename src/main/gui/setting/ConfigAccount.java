@@ -31,6 +31,12 @@ public class ConfigAccount extends JDialog {
                 JOptionPane.showMessageDialog(this,"Please input user name");
                 return;
             }
+            for (Account.Entry entry:TerminalMain.settings.accountPanel.entries){
+                if (name.getValue().equals(entry.name)){
+                    JOptionPane.showMessageDialog(this,"Already logined to:"+name.getValue());
+                    return;
+                }
+            }
             synchronized (TerminalMain.preference.users) {
                 Preference.User[] users;
                 if (TerminalMain.preference.users != null) {
@@ -52,7 +58,7 @@ public class ConfigAccount extends JDialog {
                 TerminalMain.preference.users = users;
                 TerminalMain.serializePreference();
             }
-            TerminalMain.settings.accountPanel.addAccount(name.getValue(),pass.getValue(),0);
+            TerminalMain.settings.accountPanel.addAccount(name.getValue(),pass.getValue(),-1);
 
             this.dispose();
         }));

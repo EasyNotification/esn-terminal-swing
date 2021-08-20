@@ -4,6 +4,7 @@ import main.fields.BinaryToImg;
 import main.gui.IconsData;
 import main.util.Out;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,11 +22,31 @@ public class TrayMgr {
                     super.mouseClicked(e);
                     if (e.getButton()==1){//left
                         TerminalMain.window.setVisible(true);
+                        TerminalMain.window.requestFocus();
                     }else if (e.getButton()==3){//right
 
                     }
                 }
             });
+
+
+            PopupMenu popupMenu=new PopupMenu();
+
+            MenuItem exit=new MenuItem("Exit");
+            exit.addActionListener(e->{
+                System.exit(0);
+            });
+            MenuItem show=new MenuItem("Main Window");
+            show.addActionListener(e->{
+                TerminalMain.window.setVisible(true);
+                TerminalMain.window.requestFocus();
+            });
+
+            popupMenu.add(show);
+            popupMenu.add(exit);
+
+            this.trayIcon.setPopupMenu(popupMenu);
+
             addToSystemTray();
         }else {
             Out.sayWithTimeLn("Your system does not support System Tray.R U using Linux?");

@@ -1,15 +1,14 @@
 package main.gui;
 
+import main.boot.Broadcast;
 import main.boot.TerminalMain;
+import main.boot.TrayMgr;
 import main.fields.Icon;
 import main.fields.RectLabel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class Window extends JFrame {
     public JScrollPane scrollPane;
@@ -21,7 +20,7 @@ public class Window extends JFrame {
     public final JLabel tips=new JLabel("No notification received.Please click the gear to edit your account information.");
     public Window(){
         this.setLayout(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setBounds(300,300,500,700);
         this.setTitle("esn-terminal-swing");
 
@@ -110,6 +109,21 @@ public class Window extends JFrame {
                 notificationPanel.setPreferredSize(new Dimension(scrollPane.getWidth()-40, scrollPane.getHeight()));
 //                notificationPanel.setBounds(15,85,getWidth()-40,getHeight()-150);
                 notificationPanel.resize();
+            }
+        });
+        this.addWindowFocusListener(new WindowAdapter() {
+            @Override
+            public void windowGainedFocus(WindowEvent e) {
+                super.windowGainedFocus(e);
+
+
+
+                for (int i=0;i<Broadcast.broadcastList.size();i++){
+                    Broadcast.broadcastList.get(i).dispose();
+                }
+                Broadcast.broadcastList.clear();
+
+                TerminalMain.trayMgr.trayIcon.setImage(TrayMgr.defaultIcon);
             }
         });
 

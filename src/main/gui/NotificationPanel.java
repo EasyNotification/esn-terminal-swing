@@ -1,6 +1,7 @@
 package main.gui;
 
 import main.boot.TerminalMain;
+import main.boot.TrayMgr;
 import packs.PackRespNotification;
 
 import javax.swing.*;
@@ -58,6 +59,10 @@ public class NotificationPanel extends JPanel {
 
         this.setPreferredSize(new Dimension(this.getWidth(),this.getHeight()+entry.getHeight()+10));
         TerminalMain.window.tips.setText("Notification count:"+entries.size());
+
+        if (!TerminalMain.window.isFocused()){
+            TerminalMain.trayMgr.trayIcon.setImage(TrayMgr.newIcon);
+        }
 
         this.repaint();
     }

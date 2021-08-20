@@ -12,6 +12,8 @@ public class Settings extends JDialog {
     public Account accountPanel;
     public LogPanel logPanel;
     public StartupPanel startupPanel;
+    public BroadcastPanel broadcastPanel;
+    public BroadcastBoundConfig broadcastBoundConfig;
     public Settings(){
         super(TerminalMain.window);
         this.setTitle("Settings");
@@ -30,6 +32,11 @@ public class Settings extends JDialog {
         accountPanel.setPreferredSize(new Dimension(360,400));
         this.tabbedPane.addTab("Account",accScroll);
 
+
+        broadcastPanel=new BroadcastPanel();
+        this.tabbedPane.addTab("Broadcast",broadcastPanel);
+
+        broadcastBoundConfig=new BroadcastBoundConfig();
 
 
         startupPanel=new StartupPanel();

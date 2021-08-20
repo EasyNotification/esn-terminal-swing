@@ -8,9 +8,16 @@ public class Preference {
         public String pass;
         public int last;
     }
-    public User[] users;
+    public User[] users=new User[0];
 
     public boolean store=false;
 
     public boolean showMainWindowAtStartup=true;
+
+    public boolean requestHistoryNotificationsWhenLoginToAAccount=false;
+
+    public boolean broadcast=true;
+    public int broadcastFrameXOnScreen=80;
+    public int broadcastFrameYOnScreen=60;
+    public int broadcastFrameW=500;
 }
