@@ -2,6 +2,7 @@ package main.gui.setting;
 
 import conn.ESNSession;
 import conn.ISessionListener;
+import main.boot.Broadcast;
 import main.boot.Preference;
 import main.boot.TerminalMain;
 import main.gui.NotificationPanel;
@@ -72,8 +73,10 @@ public class Account extends JPanel {
                                             return;
                                         }
                                     }
+                                    Broadcast.announce(packRespNotification,"_global_");
                                     TerminalMain.window.notificationPanel.addEntry(packRespNotification,"_global_");
                                 }else {
+                                    Broadcast.announce(packRespNotification,name);
                                     TerminalMain.window.notificationPanel.addEntry(packRespNotification,name);
                                 }
                             }
@@ -125,7 +128,12 @@ public class Account extends JPanel {
                             priv.setText(privstr.toString());
 
                             //request notifications pushed after last logout
-                            session.requestNotifications(lastID,40);
+                            if ((lastID==-1&&TerminalMain.preference.requestHistoryNotificationsWhenLoginToAAccount)){
+                                setLastID(0,name);
+                                session.requestNotifications(0,40);
+                            }else if (lastID!=-1){
+                                session.requestNotifications(lastID, 40);
+                            }
 
 
 
