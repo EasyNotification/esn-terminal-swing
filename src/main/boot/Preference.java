@@ -19,5 +19,5 @@ public class Preference {
     public boolean broadcast=true;
     public int broadcastFrameXOnScreen=80;
     public int broadcastFrameYOnScreen=60;
-    public int broadcastFrameW=500;
+    public int broadcastFrameW=530;
 }

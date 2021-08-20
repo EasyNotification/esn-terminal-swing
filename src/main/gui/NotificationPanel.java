@@ -19,7 +19,7 @@ public class NotificationPanel extends JPanel {
         private Border border;
         public Entry(PackRespNotification notification,String target){
             this.setLayout(null);
-            this.border=BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY),notification.Source+"->"+target+"<"+notification.Title+"> "+notification.Time, TitledBorder.LEFT,TitledBorder.TOP,TITLE_FONT);
+            this.border=BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY),"<"+notification.Title+"> "+notification.Source+"->"+target+" "+notification.Time, TitledBorder.LEFT,TitledBorder.TOP,TITLE_FONT);
             this.setBorder(border);
 
 

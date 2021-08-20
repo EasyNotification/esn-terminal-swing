@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Window extends JFrame {
+    public static Font tips2Font=new Font("",Font.ITALIC,12);
     public JScrollPane scrollPane;
     public NotificationPanel notificationPanel=new NotificationPanel();
     public Icon pull=new Icon(IconsData.PULL,2),push=new Icon(IconsData.PUSH,2)

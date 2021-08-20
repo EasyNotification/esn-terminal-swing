@@ -2,13 +2,16 @@ package main.gui.setting;
 
 import main.boot.Broadcast;
 import main.boot.TerminalMain;
+import main.gui.Window;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 public class BroadcastBoundConfig extends JFrame {
     public JLabel tips=new JLabel("Drag/Resize this window to config broadcast windows' location");
+    public JLabel tips2=new JLabel("  The height of a broadcast window is determined by line amount of notifications' content.");
     public JLabel info=new JLabel();
     public JButton confirm=new JButton();
     public BroadcastBoundConfig(){
@@ -22,12 +25,16 @@ public class BroadcastBoundConfig extends JFrame {
         tips.setBounds(10,10,500,25);
         this.add(tips);
 
-        info.setBounds(10,tips.getY()+tips.getHeight()+10,500,25);
+        tips2.setBounds(10,tips.getY()+tips.getHeight()+5,800,25);
+        tips2.setFont(Window.tips2Font);
+        this.add(tips2);
+
+        info.setBounds(10,tips2.getY()+tips2.getHeight()+5,500,25);
         this.add(info);
 
 
 
-        confirm.setBounds(10,info.getY()+info.getHeight()+10,200,25);
+        confirm.setBounds(10,info.getY()+info.getHeight()+5,200,25);
         confirm.setText("Click me to save this config.");
         confirm.addActionListener(e->{
             TerminalMain.preference.broadcastFrameW=BroadcastBoundConfig.this.getWidth();

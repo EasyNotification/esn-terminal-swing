@@ -26,7 +26,7 @@ public class Broadcast extends JDialog {
 
 
 
-        this.setTitle(notification.Source+"->"+receiver+" <"+notification.Title+"> "+notification.Time);
+        this.setTitle(" <"+notification.Title+"> "+notification.Source+"->"+receiver+" "+notification.Time);
 
         String[] lines=notification.Content.split("\n");
 
