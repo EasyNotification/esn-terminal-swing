@@ -27,6 +27,7 @@ public class TerminalMain {
     public static AddDialog addDialog;
     public static RemoveDialog removeDialog;
     public static TrayMgr trayMgr;
+    public static final String version="1.0";
     public static void main(String[] args) throws Exception{
 //        Debug.debug=true;
         //load config
@@ -60,17 +61,8 @@ public class TerminalMain {
 
 
         window.setVisible(preference.showMainWindowAtStartup);
-//        PackRespNotification packRespNotification=new PackRespNotification("");
-//        packRespNotification.Title="title";
-//        packRespNotification.Source="source";
-//        packRespNotification.Content="test0\ntest1\ntest2\n\n\nend中文怎么样\n下一行\n下一行看看";
-//        window.notificationPanel.addEntry(packRespNotification,"target");
-//
-//        Thread.sleep(2000);
-//
-//        window.notificationPanel.addEntry(packRespNotification,"target2");
     }
-    public static void serializePreference(){
+    public synchronized static void serializePreference(){
         if (!new File("config").isDirectory()){
             new File("config").mkdir();
         }

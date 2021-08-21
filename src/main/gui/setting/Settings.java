@@ -14,6 +14,7 @@ public class Settings extends JDialog {
     public StartupPanel startupPanel;
     public BroadcastPanel broadcastPanel;
     public BroadcastBoundConfig broadcastBoundConfig;
+    public AboutPanel aboutPanel;
     public Settings(){
         super(TerminalMain.window);
         this.setTitle("Settings");
@@ -44,6 +45,9 @@ public class Settings extends JDialog {
 
         logPanel=new LogPanel();
         this.tabbedPane.addTab("Log",logPanel);
+
+        aboutPanel=new AboutPanel();
+        this.tabbedPane.addTab("About",aboutPanel);
 
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
