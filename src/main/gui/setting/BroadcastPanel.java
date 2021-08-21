@@ -20,6 +20,7 @@ public class BroadcastPanel extends JPanel {
         show_broadcast_window.setSelected(TerminalMain.preference.broadcast);
         show_broadcast_window.addActionListener(e->{
             TerminalMain.preference.broadcast=show_broadcast_window.isSelected();
+            TerminalMain.trayMgr.broadcast.setLabel((TerminalMain.preference.broadcast?"Disable":"Enable")+" broadcast");
             TerminalMain.serializePreference();
         });
         this.add(show_broadcast_window);
