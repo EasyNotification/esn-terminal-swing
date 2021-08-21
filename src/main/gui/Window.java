@@ -22,8 +22,17 @@ public class Window extends JFrame {
     public Window(){
         this.setLayout(null);
 //        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setBounds(300,300,500,700);
+        this.setBounds(300,300,TerminalMain.preference.mainWindowWidth, TerminalMain.preference.mainWindowHeight);
         this.setTitle("esn-terminal-swing");
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                super.componentResized(e);
+                TerminalMain.preference.mainWindowHeight=getHeight();
+                TerminalMain.preference.mainWindowWidth=getWidth();
+                TerminalMain.serializePreference();
+            }
+        });
 
         pull.setBounds(20,10,40,40);
         pull.addMouseListener(new MouseAdapter() {
@@ -89,6 +98,7 @@ public class Window extends JFrame {
         this.add(setting);
 
         tips.setBounds(15,60,830,20);
+        tips.setFont(Window.tips2Font);
         this.add(tips);
 
         scrollPane=new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);

@@ -20,4 +20,7 @@ public class Preference {
     public int broadcastFrameXOnScreen=80;
     public int broadcastFrameYOnScreen=60;
     public int broadcastFrameW=530;
+
+    public int mainWindowWidth=400;
+    public int mainWindowHeight=600;
 }
