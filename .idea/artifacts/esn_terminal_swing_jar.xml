@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/esn_terminal_swing_jar</output-path>
     <root id="archive" name="esn-terminal-swing.jar">
       <element id="module-output" name="esn-terminal-swing" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/libs/esn-api-java-0.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/esn-api-java-0.9.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

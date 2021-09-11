@@ -9,6 +9,7 @@ import main.gui.NotificationPanel;
 import main.util.Out;
 import packs.PackRespNotification;
 import packs.PackResult;
+import util.Debug;
 
 import javax.swing.*;
 import java.awt.*;
@@ -130,9 +131,21 @@ public class Account extends JPanel {
                             //request notifications pushed after last logout
                             if ((lastID==-1&&TerminalMain.preference.requestHistoryNotificationsWhenLoginToAAccount)){
                                 setLastID(0,name);
-                                session.requestNotifications(0,40);
+//                                session.requestNotifications(0,200);
+
+
+                                Out.sayWithTimeLn(name+":request recent for new account");
+                                session.requestRecent(10);
                             }else if (lastID!=-1){
-                                session.requestNotifications(lastID, 40);
+//                                session.requestNotifications(lastID, 100);
+//                                Debug.debug=true;
+//                                System.out.println("count lastID:"+lastID);
+                                int count=session.countNotifications(lastID,0);
+//                                System.out.println("count");
+                                Out.sayWithTimeLn(name+":request recent amount:"+count);
+                                Debug.debug=true;
+                                session.requestRecent(count);
+//                                session.requestRecent(100);
                             }
 
 
@@ -163,6 +176,7 @@ public class Account extends JPanel {
     public ArrayList<Entry> entries=new ArrayList<>();
     public JButton addAcc=new JButton("+Add");
     public JLabel serviceTips=new JLabel();
+    public JButton deleteService=new JButton("X");
     public ConfigAccount configAccount=new ConfigAccount();
     public Account(){
         this.setLayout(null);
@@ -179,7 +193,9 @@ public class Account extends JPanel {
         }));
         this.add(addAcc);
 
-        serviceTips.setBounds(addAcc.getX()+addAcc.getWidth()+10,addAcc.getY(),250,20);
+
+
+        serviceTips.setBounds(addAcc.getX()+addAcc.getWidth()+10,addAcc.getY(),207,20);
         if (TerminalMain.preference!=null&&TerminalMain.preference.service!=null){
             serviceTips.setText("Service:"+TerminalMain.preference.service);
         }else {
@@ -187,7 +203,18 @@ public class Account extends JPanel {
         }
         this.add(serviceTips);
 
-
+        deleteService.setBounds(serviceTips.getX()+serviceTips.getWidth()+8,addAcc.getY(),45,20);
+        deleteService.addActionListener(e->{
+            String newService=javax.swing.JOptionPane.showInputDialog(this,"Please new service address to change to:");
+            if (!"".equals(newService)&&newService!=null){
+                TerminalMain.preference.service=newService;
+                TerminalMain.serializePreference();
+                this.serviceTips.setText("Service:"+newService);
+            }else {
+                javax.swing.JOptionPane.showMessageDialog(this,"Please type service address!");
+            }
+        });
+        this.add(deleteService);
     }
     public void addAccount(String name,String pass,int selectFrom){
         Entry e=new Entry(name,pass,selectFrom);
