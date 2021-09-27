@@ -23,4 +23,6 @@ public class Preference {
 
     public int mainWindowWidth=400;
     public int mainWindowHeight=600;
+
+    public int recentLimit=100;
 }

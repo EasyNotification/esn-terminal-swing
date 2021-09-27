@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="esn-api-java-0.9">
+  <library name="esn-api-java-0.10">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/esn-api-java-0.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/esn-api-java-0.10.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

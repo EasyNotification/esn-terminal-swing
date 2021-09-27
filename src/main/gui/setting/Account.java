@@ -128,6 +128,7 @@ public class Account extends JPanel {
                             privstr.append("]");
                             priv.setText(privstr.toString());
 
+                            Out.sayWithTimeLn(name+" check notifications.");
                             //request notifications pushed after last logout
                             if ((lastID==-1&&TerminalMain.preference.requestHistoryNotificationsWhenLoginToAAccount)){
                                 setLastID(0,name);
@@ -135,21 +136,20 @@ public class Account extends JPanel {
 
 
                                 Out.sayWithTimeLn(name+":request recent for new account");
-                                session.requestRecent(10);
+                                session.requestRecent(TerminalMain.preference.recentLimit);
                             }else if (lastID!=-1){
+                                Debug.debug=true;
 //                                session.requestNotifications(lastID, 100);
 //                                Debug.debug=true;
-//                                System.out.println("count lastID:"+lastID);
+                                System.out.println("count lastID:"+lastID);
                                 int count=session.countNotifications(lastID,0);
-//                                System.out.println("count");
+                                System.out.println("count");
                                 Out.sayWithTimeLn(name+":request recent amount:"+count);
-                                Debug.debug=true;
                                 session.requestRecent(count);
 //                                session.requestRecent(100);
+                                Out.sayWithTimeLn(name+" request done.");
+                                Debug.debug=false;
                             }
-
-
-
                             return;
                         }
                     } catch (Exception e) {
