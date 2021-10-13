@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class AboutPanel extends JPanel {
     public JLabel banner=new JLabel("esn-terminal-swing v"+TerminalMain.version);
-    public JLabel api=new JLabel("with esn-api-java-0.7");
+    public JLabel api=new JLabel("with esn-api-java-0.10");
     public JLabel address=new JLabel("See:https://github.com/EasyNotification");
     public JLabel license=new JLabel("Open source license:Apache 2.0");
     public AboutPanel(){
